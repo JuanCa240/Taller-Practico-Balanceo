@@ -18,11 +18,6 @@ public class ControlParentesis {
             else if(cadena.charAt(i) == ')')
                 pila.pop();
         }
-
         return pila.estaVacia();
-    }
-
-    public String getCadena() {
-        return cadena;
     }
 }
