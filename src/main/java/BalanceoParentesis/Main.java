@@ -1,9 +1,16 @@
 package BalanceoParentesis;
 
-import BalanceoParentesis.EstructuraLIFO.Pila;
-import BalanceoParentesis.Expresiones.ControlParentesis;
+import BalanceoParentesis.Controladores.ControlParentesis;
 
 import java.util.Scanner;
+
+/**
+ * Clase principal que controla la ejecución del programa de
+ * balanceo de paréntesis.
+ *
+ * Permite al usuario ingresar expresiones aritméticas y verifica
+ * si sus paréntesis están balanceados usando la clase ControlParentesis.
+ */
 
 public class Main {
     private static final Scanner teclado = new Scanner(System.in);
@@ -12,8 +19,7 @@ public class Main {
         while(true) {
             System.out.println("=== MENU PRINCIPAL ===");
             System.out.println("1.) Usar Strings (balanceo de parentesis)");
-            System.out.println("2.) Usar Enteros (Implementación de Pila con int)");
-            System.out.println("3.) Salir");
+            System.out.println("2.) Salir");
 
             System.out.print("\nIngrese una opción: ");
             String opcion = teclado.nextLine();
@@ -23,26 +29,35 @@ public class Main {
                     ingresarStrings();
                     break;
                 case "2":
-                    //Usar Enteros
-                    break;
-                case "3":
-
                     System.out.println("\nSaliendo del sistema...");
                     teclado.close();
                     System.exit(0);
                     break;
-
                 default:
                     System.out.println("\nOpcion inválida. Intente de nuevo");
             }
         }
     }
 
+    /**
+     * Permite al usuario ingresar una expresión aritmética
+     * y verifica si sus paréntesis están balanceados.
+     *
+     * La función asegura que la entrada no esté vacía y utiliza
+     * la clase ControlParentesis para la validación.
+     */
+
     public void ingresarStrings(){
         System.out.println("\n=== VERIFICAR EXPRESION ===");
-        System.out.print("Ingrese la expresión aritmética que desea verificar: ");
 
-        String expresion = teclado.nextLine();
+        String expresion = "";
+        while(expresion.isEmpty()){
+            System.out.print("Ingrese la expresión aritmética que desea verificar: ");
+            expresion = teclado.nextLine();
+
+            if(expresion.isEmpty())
+                System.out.println("No se ingresó ninguna expresion. Intente nuevamente");
+        }
 
         ControlParentesis cp = new ControlParentesis(expresion);
 
@@ -55,6 +70,10 @@ public class Main {
             System.out.println("La expresion no está balanceada");
         System.out.println("\n-----------------------------------------\n");
     }
+
+    /**
+     * Ejecuta el programa
+     */
 
     public static void main( String[] args ) {
        Main m = new Main();

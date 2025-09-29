@@ -1,5 +1,10 @@
 package BalanceoParentesis.EstructuraLIFO;
 
+/**
+ * Nodo genérico para usar en estructuras tipo Pila.
+ * @param <T> tipo de dato que almacena el nodo
+ */
+
 public class Nodo <T> {
     private Nodo<T> siguiente;
     private T dato;
